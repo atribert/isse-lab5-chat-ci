@@ -139,7 +139,8 @@ def delete_message(message_id):
     if record is None:
         return jsonify({"error": "聊天记录不存在"}), 404
 
-    messages.remove(record)
+    # Regression experiment: the success response remains, but the record is
+    # intentionally left in memory so the existing CRUD test should fail.
     save_messages()
     return jsonify({"message": "聊天记录已删除"})
 
