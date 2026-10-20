@@ -14,7 +14,8 @@ app = Flask(__name__, static_folder="frontend", static_url_path="")
 app.json.ensure_ascii = False
 
 BASE_DIR = Path(__file__).resolve().parent
-MESSAGES_FILE = BASE_DIR / "data" / "messages.json"
+DATA_DIR = Path(os.getenv("LAB5_DATA_DIR", str(BASE_DIR / "data")))
+MESSAGES_FILE = DATA_DIR / "messages.json"
 
 
 def load_messages():
